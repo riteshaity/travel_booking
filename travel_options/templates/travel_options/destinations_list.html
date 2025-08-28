@@ -1,0 +1,52 @@
+<!-- travel_options/templates/travel_options/destinations_list.html -->
+{% extends 'base.html' %}
+{% block content %}
+<h2>Available Travel Options</h2>
+
+<form method="get" class="row g-3 mb-4">
+    <div class="col-md-2">
+        <input type="text" name="type" placeholder="Type" value="{{ filters.type }}" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <input type="text" name="source" placeholder="Source" value="{{ filters.source }}" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <input type="text" name="destination" placeholder="Destination" value="{{ filters.destination }}" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <input type="date" name="date" value="{{ filters.date }}" class="form-control">
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Date & Time</th>
+            <th>Price</th>
+            <th>Seats</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for travel in travels %}
+        <tr>
+            <td>{{ travel.travel_type }}</td>
+            <td>{{ travel.source }}</td>
+            <td>{{ travel.destination }}</td>
+            <td>{{ travel.datetime }}</td>
+            <td>{{ travel.price }}</td>
+            <td>{{ travel.available_seats }}</td>
+            <td><a href="{% url 'destination_detail' travel.id %}" class="btn btn-success btn-sm">Book</a></td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="7">No travel options found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

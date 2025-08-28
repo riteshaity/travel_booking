@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Book: {{ destination.name }}</h2>
+
+    <p>{{ destination.description }}</p>
+    <p>Type: {{ destination.travel_type }}</p>
+    <p>From: {{ destination.source }} → To: {{ destination.destination }}</p>
+    <p>Date & Time: {{ destination.datetime }}</p>
+    <p>Price per seat: ₹<span id="price">{{ destination.price }}</span></p>
+    <p>Available Seats: <span id="available">{{ destination.available_seats }}</span></p>
+
+    {% if destination.available_seats > 0 %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="seats" class="form-label">Number of Seats</label>
+            <input type="number" id="seats" name="seats" class="form-control" min="1" max="{{ destination.available_seats }}" value="1">
+        </div>
+        <p>Total Price: ₹<span id="total">{{ destination.price }}</span></p>
+        <button type="submit" class="btn btn-success">Confirm Booking</button>
+    </form>
+    {% else %}
+    <p class="text-danger">No seats available for this travel option.</p>
+    {% endif %}
+</div>
+
+<script>
+    const seatsInput = document.getElementById('seats');
+    const pricePerSeat = parseFloat(document.getElementById('price').textContent);
+    const totalSpan = document.getElementById('total');
+    const maxSeats = parseInt(document.getElementById('available').textContent);
+
+    seatsInput.addEventListener('input', () => {
+        let seats = parseInt(seatsInput.value) || 1;
+        if (seats > maxSeats) seats = maxSeats;
+        if (seats < 1) seats = 1;
+        seatsInput.value = seats;
+        totalSpan.textContent = (seats * pricePerSeat).toFixed(2);
+    });
+</script>
+{% endblock %}

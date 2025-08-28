@@ -1,0 +1,16 @@
+<!-- travel_options/templates/travel_options/book_destination.html -->
+{% extends 'base.html' %}
+{% block content %}
+<h2>Book {{ travel.destination }} ({{ travel.travel_type }})</h2>
+<p>Available Seats: {{ travel.available_seats }}</p>
+<p>Price per Seat: {{ travel.price }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="seats" class="form-label">Number of Seats:</label>
+        <input type="number" id="seats" name="seats" min="1" max="{{ travel.available_seats }}" value="1" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Confirm Booking</button>
+</form>
+{% endblock %}
