@@ -18,6 +18,8 @@ import pymysql
 pymysql.install_as_MySQLdb()
 
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -95,10 +97,10 @@ WSGI_APPLICATION = 'travel_booking.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'riteshaity$default',
-        'USER': 'riteshaity',
-        'PASSWORD': 'nikkyaity',
-        'HOST': 'riteshaity.mysql.pythonanywhere-services.com',
+        'NAME': 'nikkyaity$default',
+        'USER': 'nikkyaity',
+        'PASSWORD': 'maheshbabu',
+        'HOST': 'nikkyaity.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
