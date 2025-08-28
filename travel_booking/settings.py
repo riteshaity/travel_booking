@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
 from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# from pathlib import Path
 import pymysql
 pymysql.install_as_MySQLdb()
 
@@ -26,9 +29,9 @@ pymysql.install_as_MySQLdb()
 SECRET_KEY = 'django-insecure-irgzwa-#xi7idomjnd7(pfl=d4)#x#eei^$*8_%ml!akaye^$!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['riteshaity.mysql.pythonanywhere-services.com']
+ALLOWED_HOSTS = ['riteshaity.pythonanywhere.com']
 
 
 # Application definition
@@ -67,7 +70,8 @@ ROOT_URLCONF = 'travel_booking.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],  # global templates folder
+        'DIRS': [BASE_DIR / "templates"],
+  # global templates folder
         'APP_DIRS': True,                  # required to load app templates
         'OPTIONS': {
             'context_processors': [
@@ -140,7 +144,9 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Default primary key field type
