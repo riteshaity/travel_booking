@@ -71,6 +71,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / "templates"],
+
   # global templates folder
         'APP_DIRS': True,                  # required to load app templates
         'OPTIONS': {
@@ -141,12 +142,13 @@ USE_TZ = True
 
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # ✅ Works with Path objects
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Default primary key field type
