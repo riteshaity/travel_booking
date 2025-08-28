@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-irgzwa-#xi7idomjnd7(pfl=d4)#x#eei^$*8_%ml!akaye^$!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['riteshaity.pythonanywhere.com']
 
 
 # Application definition
@@ -90,10 +90,10 @@ WSGI_APPLICATION = 'travel_booking.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydb',
-        'USER': 'root',
-        'PASSWORD': 'nikky',
-        'HOST': 'localhost',
+        'NAME': 'riteshaity$default',
+        'USER': 'riteshaity',
+        'PASSWORD': 'nikkyaity',
+        'HOST': 'riteshaity.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
